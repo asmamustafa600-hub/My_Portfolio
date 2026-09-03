@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asma Mustafa — Data Science & Machine Learning</title>
+<style>
+  :root{
+    --ink:#22302a;
+    --paper:#f2eee2;
+    --paper-dim:#e8e2d2;
+    --gold:#c1943a;
+    --teal:#3f6b64;
+    --line:#c9c0a8;
+    --text:#22302a;
+    --text-soft:#5a6058;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;
+    line-height:1.5;
+  }
+  .sans{font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;}
+
+  a{color:inherit;}
+
+  /* ---------- Header / nav ---------- */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:28px 6vw;
+    border-bottom:1px solid var(--line);
+  }
+  .brand{
+    font-size:20px;
+    letter-spacing:0.02em;
+  }
+  nav a{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:14px;
+    text-decoration:none;
+    margin-left:28px;
+    color:var(--text-soft);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  nav a:hover{ color:var(--ink); border-color:var(--gold); }
+  nav{display:flex; align-items:center;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:9vw 6vw 6vw;
+    max-width:900px;
+  }
+  .hero h1{
+    font-size:clamp(38px,6vw,68px);
+    margin:0 0 18px;
+    line-height:1.08;
+    font-weight:500;
+  }
+  .hero p.lede{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:18px;
+    color:var(--text-soft);
+    max-width:56ch;
+    margin:0 0 34px;
+  }
+  .hero .tags{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:13px;
+    color:var(--teal);
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+  }
+  .hero .tags span{
+    padding-left:14px;
+    border-left:2px solid var(--gold);
+  }
+
+  /* ---------- Section shell ---------- */
+  section{
+    padding:5vw 6vw;
+    border-top:1px solid var(--line);
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:40px;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-size:30px;
+    margin:0;
+    font-weight:500;
+  }
+  .section-head .note{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:13px;
+    color:var(--text-soft);
+    max-width:38ch;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:60px;
+  }
+  .about-grid p{
+    max-width:56ch;
+    color:var(--text);
+    font-size:17px;
+  }
+  .credentials{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:14px;
+  }
+  .credentials .row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    color:var(--text-soft);
+  }
+  .credentials .row strong{
+    color:var(--ink);
+    font-weight:600;
+  }
+
+  /* ---------- Projects: editorial list, numbered because it's a learning sequence ---------- */
+  .project-row{
+    display:grid;
+    grid-template-columns:56px 1.4fr 1fr;
+    gap:30px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .project-row:first-of-type{border-top:1px solid var(--line);}
+  .project-num{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:14px;
+    color:var(--gold);
+    padding-top:4px;
+  }
+  .project-row h3{
+    margin:0 0 8px;
+    font-size:22px;
+    font-weight:500;
+  }
+  .project-row h3 a{
+    text-decoration:none;
+    border-bottom:1px solid var(--gold);
+    padding-bottom:1px;
+  }
+  .project-row h3 a:hover{ color:var(--teal); }
+  .project-meta a{
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+  }
+  .project-meta a:hover{ border-color:var(--gold); color:var(--ink); }
+  .project-row p{
+    margin:0;
+    font-size:15.5px;
+    color:var(--text-soft);
+    max-width:52ch;
+  }
+  .project-meta{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:13px;
+    color:var(--teal);
+  }
+  .project-meta .stat{
+    display:block;
+    font-size:22px;
+    color:var(--ink);
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .project-meta .stack{
+    display:block;
+    margin-top:10px;
+    color:var(--text-soft);
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+  }
+  .skill-block h4{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:13px;
+    color:var(--teal);
+    margin:0 0 14px;
+    font-weight:600;
+  }
+  .skill-block ul{
+    list-style:none;
+    margin:0; padding:0;
+    font-size:16px;
+  }
+  .skill-block li{
+    padding:8px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  /* ---------- Contact / footer ---------- */
+  footer{
+    padding:6vw;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:30px;
+  }
+  footer h2{
+    font-size:34px;
+    margin:0 0 10px;
+    font-weight:500;
+    max-width:12ch;
+  }
+  .contact-links{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    font-size:15px;
+  }
+  .contact-links a{
+    text-decoration:none;
+    border-bottom:1px solid var(--gold);
+    padding-bottom:1px;
+    width:fit-content;
+  }
+  .fine-print{
+    font-family:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:12px;
+    color:var(--text-soft);
+    width:100%;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+    margin-top:20px;
+  }
+
+  @media (max-width:780px){
+    header{flex-direction:column; align-items:flex-start; gap:14px;}
+    nav a{margin-left:0; margin-right:20px;}
+    .about-grid{grid-template-columns:1fr;}
+    .project-row{grid-template-columns:1fr; }
+    .project-num{padding-top:0;}
+    .skills-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Asma Mustafa</div>
+  <nav class="sans">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>I teach ideas until<br>they make sense —<br>now I teach that to models too.</h1>
+  <p class="lede sans">Data Science &amp; Machine Learning student at NAVTTC, Lahore. Formerly a Spoken English instructor and peer tutor — I bring the same instinct for breaking things down into building models that actually work.</p>
+  <div class="tags sans">
+    <span>Lahore, Pakistan</span>
+    <span>NAVTTC — Data Science &amp; ML</span>
+    <span>Python · TensorFlow · Streamlit</span>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-head">
+    <h2>About</h2>
+    <div class="note">Two years of teaching people, now spent teaching machines.</div>
+  </div>
+  <div class="about-grid">
+    <p>
+      I started in classrooms, not code editors — as a Spoken English Instructor and Peer Tutor at Govt. Graduate College for Women, Lahore. That work taught me how to spot exactly where someone gets confused, and how to explain the next step so it clicks. I bring that same approach to machine learning: I don't just get a model working, I understand why it works, one concept at a time — gradients, optimizers, architectures — before moving to the next.
+      <br><br>
+      I'm currently completing NAVTTC's Data Science and Machine Learning program, where I build, break, and rebuild models in Python — from classical regression to deep learning with TensorFlow and Keras.
+    </p>
+    <div class="credentials">
+      <div class="row"><span>Program</span><strong>NAVTTC Data Science &amp; ML</strong></div>
+      <div class="row"><span>Prior role</span><strong>Spoken English Instructor</strong></div>
+      <div class="row"><span>Prior role</span><strong>Peer Tutor, Govt. Graduate College for Women</strong></div>
+      <div class="row"><span>Based in</span><strong>Lahore, Pakistan</strong></div>
+      <div class="row"><span>Tools</span><strong>Python, TensorFlow, Keras, Streamlit</strong></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-head">
+    <h2>Projects</h2>
+    <div class="note sans">Ordered the way I learned them — each one added a new piece.</div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">01</div>
+    <div>
+      <h3><a href="https://github.com/asmamustafa600-hub/Cifer10_NoCNN_Classification" target="_blank">CIFAR-10 Image Classification, No-CNN Constraint</a></h3>
+      <p>Built an image classifier under the constraint of not using convolutional layers, then compared it against a Vision Transformer approach — with early stopping to control overfitting.</p>
+    </div>
+    <div class="project-meta">
+      <span class="stat">ViT vs. dense</span>
+      Model comparison
+      <span class="stack">Python · TensorFlow · HuggingFace</span>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">02</div>
+    <div>
+      <h3>MNIST Digit Classifier</h3>
+      <p>A handwritten digit classifier built to solidify CNN fundamentals — layer choices, activation functions, and training behaviour on image data.</p>
+    </div>
+    <div class="project-meta">
+      <span class="stat">~97–98%</span>
+      Test accuracy
+      <span class="stack">Python · TensorFlow · Keras</span>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">03</div>
+    <div>
+      <h3><a href="https://github.com/asmamustafa600-hub/Wine_Quality_classification_by_asma" target="_blank">Wine Quality Classification</a></h3>
+      <p>A three-class quality-bucketing model built from raw chemical measurements, with careful handling of class imbalance and threshold tuning.</p>
+    </div>
+    <div class="project-meta">
+      <span class="stat">~87%</span>
+      Validation accuracy
+      <span class="stack">Python · Keras · scikit-learn</span>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">04</div>
+    <div>
+      <h3><a href="https://github.com/asmamustafa600-hub/House_rent_prediction_by_DL" target="_blank">House Rent Prediction</a></h3>
+      <p>Predicts rental prices from listing features, using target encoding for high-cardinality locality data and a reproducible Colab pipeline.</p>
+    </div>
+    <div class="project-meta">
+      <span class="stat">R² ≈ 0.80</span>
+      Deep learning version
+      <span class="stack">Python · TensorFlow · Pandas<br>
+      <a href="https://house-rent-prediction-by-asma.streamlit.app/" target="_blank">Live demo →</a><br>
+      <a href="https://github.com/asmamustafa600-hub/-house-rent-predictor" target="_blank">Original repo →</a></span>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">05</div>
+    <div>
+      <h3>Water Potability Classifier</h3>
+      <p>Classifies water samples as safe or unsafe to drink, exploring SMOTE for class imbalance against a real accuracy ceiling in noisy data.</p>
+    </div>
+    <div class="project-meta">
+      <span class="stat">~66–68%</span>
+      Accuracy ceiling
+      <span class="stack">Python · Random Forest</span>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">06</div>
+    <div>
+      <h3>Deployed Streamlit Apps</h3>
+      <p>A set of small, fully deployed tools: a scientific calculator, an animated BMI calculator, a Baby/Toddler BMI calculator, and a To-Do list app — each live and usable, not just notebooks.</p>
+    </div>
+    <div class="project-meta">
+      <span class="stat">4 apps</span>
+      Live on Streamlit Cloud
+      <span class="stack">
+      <a href="https://asma-s-calculator-gd6ckkakju2gmiq6ysmrgw.streamlit.app/" target="_blank">Scientific Calculator →</a><br>
+      <a href="https://bmicalculator-ruad4zenucxiferezlntku.streamlit.app/" target="_blank">BMI Calculator →</a>
+      </span>
+    </div>
+  </div>
+
+</section>
+
+<section id="skills">
+  <div class="section-head">
+    <h2>Skills</h2>
+    <div class="note sans">What I reach for, depending on the problem.</div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4 class="sans">MACHINE LEARNING</h4>
+      <ul>
+        <li>Regression &amp; classification</li>
+        <li>Feature engineering</li>
+        <li>Precision, recall &amp; evaluation</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h4 class="sans">DEEP LEARNING</h4>
+      <ul>
+        <li>ANN / CNN / RNN architectures</li>
+        <li>TensorFlow &amp; Keras</li>
+        <li>Vision Transformers (HuggingFace)</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h4 class="sans">TOOLS &amp; DELIVERY</h4>
+      <ul>
+        <li>Pandas, Seaborn, scikit-learn</li>
+        <li>Streamlit deployment</li>
+        <li>Google Colab workflows</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <h2>Let's talk data.</h2>
+  <div class="contact-links">
+    <a href="https://github.com/asmamustafa600-hub" target="_blank">github.com/asmamustafa600-hub</a>
+    <a href="mailto:asmamustafa600@gmail.com">asmamustafa600@gmail.com</a>
+  </div>
+  <div class="fine-print">Asma Mustafa — Data Science &amp; Machine Learning, Lahore, Pakistan.</div>
+</footer>
+
+</body>
+</html>
